@@ -14,8 +14,9 @@ The Python beginner codes cover a range of programming concepts, including:
 3. Conditionals and loops
 4. Functions
 5. Lists and dictionaries
-6. File handling
-7. Data Structures and algorithms
+6. Object Oriented Programming
+7. File handling
+8. Data Structures and algorithms
 
 ## Running the Codes
 To run these codes, simply open the Python file in your chosen development environment or text editor and run the code. The output will be displayed in the console.
