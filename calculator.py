@@ -1,99 +1,83 @@
+import tkinter as tk
 import math
 
-class Calculator:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
+def add(x, y):
+    return x + y
 
-    def addition(self, a, b):
-        sum = a + b
-        print('----------------------------------------------------------')
-        print(sum)
-        print('----------------------------------------------------------')
+def subtract(x, y):
+    return x - y
 
-    def subtration(self, a, b):
-        difference = a - b
-        print('----------------------------------------------------------')
-        print(difference)
-        print('----------------------------------------------------------')
+def multiply(x, y):
+    return x * y
 
-    def division(self, a, b):
-        divide = a // b
-        print('----------------------------------------------------------')
-        print(divide)
-        print('----------------------------------------------------------')
+def divide(x, y):
+    if y != 0:
+        return x / y
+    else:
+        return "Error: Cannot divide by zero."
+    
+def sine(x):
+    return math.sin(math.radians(x))
 
-    def multiplication(self, a, b):
-        product = a * b
-        print('----------------------------------------------------------')
-        print(product)
-        print('----------------------------------------------------------')
+def cosine(x):
+    return math.cos(math.radians(x))
 
-    def logarithms(self, a, b):
-        print('----------------------------------------------------------')
-        print(math.log10(a))
-        print(math.log10(b))
-        print('----------------------------------------------------------')
+def log(x):
+    return math.log10(x)
 
-    # def sine(self, a, b = None):
-    #     print('----------------------------------------------------------')
-    #     print(math.sin(a))
-    #     print(math.sin(b))
-    #     print('----------------------------------------------------------')
-
-    def binary(self, a, b = None):
-        print('----------------------------------------------------------')
-        c = bin(a)
-        d = bin(b)
-        print(c)
-        print(d)
-        print('----------------------------------------------------------')
-
-    def hexadecimal(self, a, b = None):
-        print('----------------------------------------------------------')
-        e = hex(a)
-        f = hex(b)
-        print(e)
-        print(f)
-        print('----------------------------------------------------------')
-
-    def octaldecimal(self, a, b = None):
-        print('----------------------------------------------------------')
-        g = oct(a)
-        h = oct(b)
-        print(g)
-        print(h)
-        print('----------------------------------------------------------')
-
-    def absolute_value(self, a, b = None):
-        print('----------------------------------------------------------')
-        i = abs(a)
-        j = abs(b)
-        print(i)
-        print(j)
-        print('----------------------------------------------------------')
+def tan(x):
+    return math.tan(math.radians(x))
 
 
 
+def calculate():
+    num1 = float(entry_num1.get())
+    num2 = float(entry_num2.get())
+    operation = operations.get()
 
+    if operation == "Add":
+        result = add(num1, num2)
+    elif operation == "Subtract":
+        result = subtract(num1, num2)
+    elif operation == "Multiply":
+        result = multiply(num1, num2)
+    elif operation == "Divide":
+        result = divide(num1, num2)
+    elif operation == "Logarithm":
+        result = log(num1)
+    elif operation == "Sine":
+        result = sine(num1)
+    elif operation == "Cosine":
+        result = cosine(num1)
+    elif operation == "Tangent":
+        result = tan(num1)
 
+    result_label.config(text="Result: " + str(result))
 
-a = int(input("enter value -- "))
-b = int(input("enter value -- "))
-operation = Calculator(a, b)
-# operation.addition(a,b)
-# operation.subtration(a,b)
-# operation.multiplication(a,b)
-operation.logarithms(a, b)
-# operation.binary(a,b)
-# operation.hexadecimal(a,b)
-# operation.octaldecimal(a,b)
-# operation.absolute_value(a,b)
+# Create the main application window
+root = tk.Tk()
+root.title("Scientific Calculator")
 
+# Input fields for numbers
+entry_num1 = tk.Entry(root, width=10)
+entry_num1.pack(pady=5)
 
+entry_num2 = tk.Entry(root, width=10)
+entry_num2.pack(pady=5)
 
+# Dropdown menu for operations
+operations = tk.StringVar()
+operations.set("Add")
+operation_choices = ["Add", "Subtract", "Multiply", "Divide", "Logarithm", "Sine", "Cosine", "Tangent"]
+operation_menu = tk.OptionMenu(root, operations, *operation_choices)
+operation_menu.pack(pady=5)
 
+# Calculate button
+calculate_button = tk.Button(root, text="Calculate", command=calculate)
+calculate_button.pack(pady=10)
 
+# Result label
+result_label = tk.Label(root, text="Result: ")
+result_label.pack(pady=5)
 
-
-
+root.mainloop()
